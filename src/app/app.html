@@ -1,0 +1,122 @@
+<div class="app-shell" [ngClass]="timer.mode()">
+  <!-- Top Heritage Navigation -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo-box">
+        <span class="logo-icon">🔥</span>
+        <div class="logo-text-col">
+          <span class="logo-title">FOCUSFORGE</span>
+          <span class="logo-sub">AMBIENT GAMIFIED POMODORO & LIVING DIORAMA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- Streak Pill -->
+      <div class="streak-pill" title="Current Daily Streak">
+        <span class="streak-flame">⚡</span>
+        <span class="streak-label">STREAK:</span>
+        <span class="streak-count">{{ streak.streakData().currentStreak }} Days</span>
+      </div>
+
+      <!-- Quick Audio Mute Toggle -->
+      <button
+        type="button"
+        class="sound-badge-btn"
+        (click)="onToggleMute()"
+        [title]="sound.isMuted() ? 'Unmute Ambient Sounds (M)' : 'Mute Ambient Sounds (M)'"
+      >
+        @if (sound.isMuted()) {
+          <span>🔇 Muted</span>
+        } @else {
+          <span>🔊 Sound ON</span>
+        }
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Viewport Content -->
+  <main class="main-content">
+    <!-- Living Diorama Stage -->
+    <section class="section-container">
+      <app-diorama
+        [progress]="timer.progressFraction()"
+        [mode]="timer.mode()"
+        [status]="timer.status()"
+      ></app-diorama>
+    </section>
+
+    <!-- Interactive Workspace Grid -->
+    <div class="workspace-grid">
+      <!-- Left: Circular Timer Console -->
+      <div class="grid-col">
+        <app-timer-display
+          [remainingSeconds]="timer.remainingSeconds()"
+          [totalSeconds]="timer.totalSeconds()"
+          [progressFraction]="timer.progressFraction()"
+          [mode]="timer.mode()"
+          [status]="timer.status()"
+          [cycleNumber]="timer.completedCycles() + 1"
+          [currentPresetName]="timer.currentPreset.name"
+          (togglePlay)="onTogglePlay()"
+          (resetTimer)="onReset()"
+          (skipPhase)="onSkip()"
+          (selectPreset)="onSelectPreset($event)"
+          (setCustom)="onSetCustom($event)"
+        ></app-timer-display>
+      </div>
+
+      <!-- Right: Analog Sound Mixer -->
+      <div class="grid-col">
+        <app-sound-mixer
+          [channels]="sound.channels()"
+          [masterVolume]="sound.masterVolume()"
+          [isMuted]="sound.isMuted()"
+          (channelVolumeChange)="onChannelVolumeChange($event)"
+          (channelToggle)="onChannelToggle($event)"
+          (masterVolumeChange)="onMasterVolumeChange($event)"
+          (toggleMute)="onToggleMute()"
+          (applyPreset)="onApplySoundPreset($event)"
+        ></app-sound-mixer>
+      </div>
+    </div>
+
+    <!-- Telemetry & Reputation Vault -->
+    <section class="section-container">
+      <app-streak-vault
+        [streakData]="streak.streakData()"
+      ></app-streak-vault>
+    </section>
+  </main>
+
+  <!-- Achievement Badge Unlock Toast -->
+  @if (unlockedBadgeToast(); as badge) {
+    <div class="badge-toast animate-slide-up" (click)="dismissToast()">
+      <span class="toast-sparkle">✨</span>
+      <span class="toast-icon">{{ badge.icon }}</span>
+      <div class="toast-text-col">
+        <span class="toast-title">NEW BADGE UNLOCKED!</span>
+        <span class="toast-name">{{ badge.title }}</span>
+        <span class="toast-desc">{{ badge.description }}</span>
+      </div>
+      <button type="button" class="toast-close-btn" (click)="dismissToast()">✕</button>
+    </div>
+  }
+
+  <!-- Keyboard Shortcuts Bar -->
+  <div class="shortcuts-bar">
+    <div class="shortcut-item"><kbd>Space</kbd> Play / Pause</div>
+    <div class="shortcut-item"><kbd>R</kbd> Reset</div>
+    <div class="shortcut-item"><kbd>S</kbd> Skip Phase</div>
+    <div class="shortcut-item"><kbd>M</kbd> Mute Sounds</div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <span>Built with Angular 22 Signals, Web Audio API procedural synthesis, and drift-free delta timers.</span>
+      <span class="bullet">•</span>
+      <span>100% Client-Side & Offline PWA Ready.</span>
+    </div>
+  </footer>
+</div>

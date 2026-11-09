@@ -1,0 +1,276 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #0c0a09;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(234, 88, 12, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(217, 119, 6, 0.08) 0%, transparent 40%),
+    linear-gradient(to bottom, #141210 0%, #0c0a09 100%);
+  color: #fafaf9;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: background-color 0.4s ease;
+}
+
+.app-shell.shortBreak, .app-shell.longBreak {
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(2, 132, 199, 0.08) 0%, transparent 40%),
+    linear-gradient(to bottom, #091322 0%, #040810 100%);
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 2rem;
+  background: rgba(20, 18, 16, 0.85);
+  border-bottom: 1px solid rgba(217, 119, 6, 0.25);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.logo-icon {
+  font-size: 1.85rem;
+  filter: drop-shadow(0 2px 8px rgba(234, 88, 12, 0.5));
+}
+
+.logo-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  background: linear-gradient(to right, #fef3c7, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: ui-serif, Georgia, serif;
+}
+
+.logo-sub {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #a8a29e;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.streak-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(41, 37, 36, 0.8);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+}
+
+.streak-flame {
+  font-size: 0.9rem;
+}
+
+.streak-label {
+  color: #78716c;
+  font-weight: 700;
+}
+
+.streak-count {
+  color: #fed7aa;
+  font-family: ui-monospace, monospace;
+  font-weight: 800;
+}
+
+.sound-badge-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(41, 37, 36, 0.85);
+  border: 1px solid #57534e;
+  color: #d6d3d1;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sound-badge-btn:hover {
+  border-color: #f59e0b;
+  color: #fbbf24;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.section-container {
+  margin-bottom: 2rem;
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-toast {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  z-index: 1000;
+  background: linear-gradient(135deg, #1c1917, #292524);
+  border: 2px solid #f59e0b;
+  border-radius: 16px;
+  padding: 1.1rem 1.5rem;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 420px;
+  cursor: pointer;
+}
+
+.toast-sparkle {
+  font-size: 1.5rem;
+  animation: sparkleRotate 2s infinite ease-in-out;
+}
+
+.toast-icon {
+  font-size: 2rem;
+}
+
+.toast-text-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.toast-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #f59e0b;
+}
+
+.toast-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fafaf9;
+  margin: 0.15rem 0;
+}
+
+.toast-desc {
+  font-size: 0.75rem;
+  color: #a8a29e;
+}
+
+.toast-close-btn {
+  background: transparent;
+  border: none;
+  color: #78716c;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.toast-close-btn:hover {
+  color: #fafaf9;
+}
+
+.shortcuts-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(20, 18, 16, 0.7);
+  border-top: 1px solid rgba(68, 64, 60, 0.3);
+  font-size: 0.75rem;
+  color: #a8a29e;
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+kbd {
+  background: #292524;
+  border: 1px solid #57534e;
+  border-bottom-width: 2px;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: #fef3c7;
+}
+
+.app-footer {
+  background: #141210;
+  border-top: 1px solid rgba(68, 64, 60, 0.4);
+  padding: 1.5rem;
+  text-align: center;
+  color: #78716c;
+  font-size: 0.78rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.bullet {
+  color: #44403c;
+}
+
+@keyframes sparkleRotate {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.2) rotate(15deg); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
